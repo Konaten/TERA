@@ -44,10 +44,14 @@ public class ZombieSpawner : MonoBehaviour
         // Génère un point entre minDistance et maxDistance
         Vector2 randomDir = Random.insideUnitCircle.normalized;
         float randomDist = Random.Range(minDistance, maxDistance);
-
         Vector3 spawnOffset = new Vector3(randomDir.x, 0, randomDir.y) * randomDist;
         Vector3 spawnPos = playerTransform.position + spawnOffset;
 
-        Instantiate(zombiePrefab, spawnPos, Quaternion.identity);
+        Vector3 directionToPlayer = playerTransform.position - spawnPos;
+        directionToPlayer.y = 0; // Empêche le zombie de pencher vers le haut/bas
+
+        Quaternion spawnRotation = Quaternion.LookRotation(directionToPlayer);
+        
+        Instantiate(zombiePrefab, spawnPos, spawnRotation);
     }
 }
