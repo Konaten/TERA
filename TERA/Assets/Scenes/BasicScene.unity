@@ -377,12 +377,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831834007}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
-  zombiePrefab: {fileID: 0}
+  zombiePrefab: {fileID: 480158146810503871, guid: 91150216351fcee4988f5cd4666d3d96, type: 3}
   playerTransform: {fileID: 2137232297}
   spawnInterval: 5
   minDistance: 5
