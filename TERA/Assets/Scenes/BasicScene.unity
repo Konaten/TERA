@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
-  zombiePrefab: {fileID: 7519321484099935820, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
+  zombiePrefab: {fileID: 5059993770688142007, guid: bc500ad966572454286617e614c2dac5, type: 3}
   playerTransform: {fileID: 2137232297}
   spawnInterval: 2
   minDistance: 5
