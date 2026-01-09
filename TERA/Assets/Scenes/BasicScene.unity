@@ -492,7 +492,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146863810}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDamping: 1
   m_AngularDamping: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -503,7 +503,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -1018,7 +1018,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448641984}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 60
   m_LinearDamping: 1
   m_AngularDamping: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1548,6 +1548,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1470514336855735156, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514336855735156, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470514336855735156, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
       propertyPath: m_LinearDamping
       value: 1
       objectReference: {fileID: 0}
@@ -1557,7 +1565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1928884790273207993, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.214
+      value: -1.537
       objectReference: {fileID: 0}
     - target: {fileID: 1928884790273207993, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
       propertyPath: m_LocalPosition.y
