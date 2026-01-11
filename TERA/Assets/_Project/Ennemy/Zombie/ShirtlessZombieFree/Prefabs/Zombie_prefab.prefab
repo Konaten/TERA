@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7519321484099935820, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
       propertyPath: m_Name
-      value: Zombie_prefab Variant
+      value: Zombie_prefab
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3977983004640394652, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
@@ -169,6 +169,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1568184183487733611}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7519321484099935820, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -638953874808553779}
     - targetCorrespondingSourceObject: {fileID: 7519321484099935810, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8190077847608841736}
@@ -294,6 +297,25 @@ CapsuleCollider:
   m_Height: 0.4
   m_Direction: 0
   m_Center: {x: 0.15, y: 0, z: 0}
+--- !u!1 &5059993770688142007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7519321484099935820, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
+  m_PrefabInstance: {fileID: 3342034357068170491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-638953874808553779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059993770688142007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c1b2512224f2741ae73155f0f99785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieHealth
+  maxHealth: 100
+  bloodEffectPrefab: {fileID: 8739273884110801971, guid: 956f5ad08c59ff84b9f70d32fc1fae4e, type: 3}
 --- !u!1 &5059993770688142009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7519321484099935810, guid: 4d99d47e6e48a714c895368aed8a8fa6, type: 3}
