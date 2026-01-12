@@ -46,6 +46,7 @@ public class ZombieSpawner : MonoBehaviour
         float randomDist = Random.Range(minDistance, maxDistance);
         Vector3 spawnOffset = new Vector3(randomDir.x, 0, randomDir.y) * randomDist;
         Vector3 spawnPos = playerTransform.position + spawnOffset;
+        spawnPos.y -= playerTransform.position.y; // On le remet en face du joueur en enlevant la hauteur de la cam
 
         Vector3 directionToPlayer = playerTransform.position - spawnPos;
         directionToPlayer.y = 0; // Empêche le zombie de pencher vers le haut/bas

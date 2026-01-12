@@ -9,12 +9,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Weapon
   - Water
   - UI
-  - Player
-  - 
-  - 
+  - Ammo
+  - Zombie
+  - Ground
   - 
   - 
   - 
