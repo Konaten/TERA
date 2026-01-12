@@ -45,17 +45,29 @@ public class ZombieAI : MonoBehaviour{
     [Header("DeadState")]
     public float timeBeforeDestroy = 3f;
     public bool isDead = false;
+    [Header("Effets")]
+    public GameObject bloodEffectPrefab;
 
     [Header("References")]
-    public NavMeshAgent navMeshAgent;
-    public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    private NavMeshAgent navMeshAgent;
+    private Transform player;
+    public LayerMask whatIsGround;
     // public WaveZombieSpawner spawner;
-    public Animator animator;
+    private Animator animator;
 
     private void Start(){
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         currentState = State.IdleState;
+
+        if (Camera.main != null)
+        {
+            player = Camera.main.transform;
+        }
+        else 
+        {
+            Debug.LogError("Erreur : Impossible de trouver la Main Camera (le casque VR) !");
+        }
     }
 
     private void Update(){
@@ -85,19 +97,24 @@ public class ZombieAI : MonoBehaviour{
             break;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)){
-            TakeDamage(10);
-        }
+        // if(Input.GetKeyDown(KeyCode.Space)){
+        //     TakeDamage(10);
+        // }
     }
 
-    private void Idle(){
-        if(Physics.CheckSphere(transform.position,playerDetectionRange,whatIsPlayer)){
+    private void Idle()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer < playerDetectionRange)
+        {
             ResetIdle();
             currentState = State.ChaseState;
             return;
         }
 
-        if(restTime >= restDuration){
+        if (restTime >= restDuration)
+        {
             ResetIdle();
             currentState = State.WanderState;
             return;
@@ -106,14 +123,19 @@ public class ZombieAI : MonoBehaviour{
         restTime += Time.deltaTime;
     }
 
-    private void Wander(){
-        if(Physics.CheckSphere(transform.position,playerDetectionRange,whatIsPlayer)){
+    private void Wander()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer < playerDetectionRange)
+        {
             ResetIdle();
             currentState = State.ChaseState;
             return;
         }
+
         if (!wanderPointSet) SearchWanderPoint();
-        
+
         navMeshAgent.speed = wanderSpeed;
 
         if (wanderPointSet)
@@ -121,7 +143,8 @@ public class ZombieAI : MonoBehaviour{
 
         float distanceToWanderPoint = (transform.position - wanderPoint).magnitude;
 
-        if (distanceToWanderPoint < 0.1f){
+        if (distanceToWanderPoint < 0.1f)
+        {
             wanderPointSet = false;
             ResetWander();
             currentState = State.IdleState;
@@ -196,22 +219,35 @@ public class ZombieAI : MonoBehaviour{
             wanderPointSet = true;
     }
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(float damage, RaycastHit hitInfo){
         health -= damage;
+        if (bloodEffectPrefab != null)
+        {
+            SpawnBlood(hitInfo);
+        }
         //animator.SetTrigger("isDamaged");
         
         if (health <= 0 && !isDead) DestroyZombie();
     }
 
+    void SpawnBlood(RaycastHit hit)
+    {
+        GameObject blood = Instantiate(bloodEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+        blood.transform.SetParent(hit.transform);
+        blood.transform.localPosition += Vector3.forward * 0.01f;
+        float randomScale = Random.Range(0.03f, 0.05f);
+        blood.transform.localScale = new Vector3(randomScale, randomScale, 1);
+        Destroy(blood, 10f);
+    }
+
     private void DestroyZombie(){
         // player.gameObject.GetComponent<RessourcePlayer>().gagner_argent(argent);
-        // isDead = true;
-        // currentState = State.DeadState;
+        isDead = true;
+        currentState = State.DeadState;
         // if(spawner != null){
         //     spawner.EliminateZombie();
         // }
-        // Destroy(gameObject,timeBeforeDestroy);
-        Debug.Log("destroyzombie");
+        Destroy(gameObject,timeBeforeDestroy);
     }
 
     public void Attacking(){

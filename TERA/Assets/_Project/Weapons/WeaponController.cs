@@ -106,7 +106,7 @@ public class WeaponController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range, hitLayers))
         {
-            ZombieHealth zombie = hit.transform.GetComponentInParent<ZombieHealth>();
+            ZombieAI zombie = hit.transform.GetComponentInParent<ZombieAI>();
             if (zombie != null)
             {
                 zombie.TakeDamage(damage, hit);
