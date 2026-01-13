@@ -16,6 +16,10 @@ public class ZombieSpawner : MonoBehaviour
     [Tooltip("Distance maximale entre le joueur et le zombie")]
     public float maxDistance = 10.0f; // Distance maximum du joueur
 
+    [Tooltip("Nombre maximum de zombies présents en même temps dans la scène.")]
+    public int maxZombies = 5;
+    private int currentZombies = 0;
+
     void Start()
     {
         if (playerTransform == null)
@@ -41,6 +45,8 @@ public class ZombieSpawner : MonoBehaviour
 
     void SpawnZombie()
     {
+        if (currentZombies >= maxZombies) return;
+
         // Génère un point entre minDistance et maxDistance
         Vector2 randomDir = Random.insideUnitCircle.normalized;
         float randomDist = Random.Range(minDistance, maxDistance);
@@ -52,7 +58,22 @@ public class ZombieSpawner : MonoBehaviour
         directionToPlayer.y = 0; // Empêche le zombie de pencher vers le haut/bas
 
         Quaternion spawnRotation = Quaternion.LookRotation(directionToPlayer);
-        
-        Instantiate(zombiePrefab, spawnPos, spawnRotation);
+
+        GameObject zombieGO = Instantiate(zombiePrefab, spawnPos, spawnRotation);
+
+        ZombieAI zombieAI = zombieGO.GetComponent<ZombieAI>();
+        if (zombieAI != null)
+        {
+            zombieAI.spawner = this;
+        }
+
+        currentZombies++;
     }
+
+
+    public void OnZombieKilled()
+    {
+        currentZombies--;
+    }
+
 }
