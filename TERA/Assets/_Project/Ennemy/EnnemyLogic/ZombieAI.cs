@@ -53,6 +53,7 @@ public class ZombieAI : MonoBehaviour
     [Header("References")]
     private NavMeshAgent navMeshAgent;
     private Transform player;
+    private Joueur playerScript;
     public LayerMask whatIsGround;
     private Animator animator;
     public ZombieSpawner spawner;
@@ -76,7 +77,13 @@ public class ZombieAI : MonoBehaviour
 
         if (Camera.main != null)
         {
-            player = Camera.main.transform;
+            player = Camera.main.transform;    
+            playerScript = FindObjectOfType<Joueur>();
+
+            if (playerScript == null)
+            {
+                Debug.LogError("Erreur : Joueur script non trouvé sur XR Origin !");
+            }
         }
         else
         {
@@ -209,6 +216,7 @@ public class ZombieAI : MonoBehaviour
             // ATTACK IN THE ANIMATION
             canAttack = false;
             Invoke(nameof(ResetAttack), attackCoolDown);
+            playerScript.PvRemoved(Degats);
         }
     }
 
