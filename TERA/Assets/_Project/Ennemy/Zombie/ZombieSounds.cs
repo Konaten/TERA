@@ -14,7 +14,7 @@ public class ZombieSounds : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        zombieClips = Resources.LoadAll<AudioClip>("Zombie/Sounds");
+        zombieClips = Resources.LoadAll<AudioClip>("Zombie/Sounds/Alive");
 
         StartCoroutine(PlayZombieSounds());
     }
