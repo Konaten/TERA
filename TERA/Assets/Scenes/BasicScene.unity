@@ -6888,7 +6888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
-  zombiePrefab: {fileID: 5059993770688142007, guid: bc500ad966572454286617e614c2dac5, type: 3}
+  zombiePrefab: {fileID: 7805496685237920567, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
   playerTransform: {fileID: 2137232297}
   spawnInterval: 10
   minDistance: 5
@@ -7883,6 +7883,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9180811725278015349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7805496685237920567, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_Name
+      value: Zombie_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.29971
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.95582
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805496685238419159, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7899,3 +7956,4 @@ SceneRoots:
   - {fileID: 1104855622}
   - {fileID: 827558702}
   - {fileID: 146863816}
+  - {fileID: 9180811725278015349}
