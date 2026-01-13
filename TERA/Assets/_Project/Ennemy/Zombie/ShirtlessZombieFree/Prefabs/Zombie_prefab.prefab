@@ -357,6 +357,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  spawner: {fileID: 0}
 --- !u!195 &6551705565065118125
 NavMeshAgent:
   m_ObjectHideFlags: 0

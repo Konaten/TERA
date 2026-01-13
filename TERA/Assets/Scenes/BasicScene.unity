@@ -5913,7 +5913,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448641984}
   serializedVersion: 5
-  m_Mass: 60
+  m_Mass: 300
   m_LinearDamping: 1
   m_AngularDamping: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -6893,6 +6893,7 @@ MonoBehaviour:
   spawnInterval: 10
   minDistance: 5
   maxDistance: 10
+  maxZombies: 5
 --- !u!4 &831834009
 Transform:
   m_ObjectHideFlags: 0
