@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 146863813}
   - component: {fileID: 146863812}
   - component: {fileID: 146863811}
+  - component: {fileID: 146863817}
   m_Layer: 6
   m_Name: MagAK47
   m_TagString: Untagged
@@ -618,6 +619,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146863817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146863810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdac468c9a347b4b8249bd1695e68c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magazine
+  maxAmmo: 30
+  currentAmmo: 30
 --- !u!1 &152828795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 751006156712602996, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
@@ -5899,10 +5914,46 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 382719707}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 382719707}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 382719707}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_useGravity
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -6982,12 +7033,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
-  zombiePrefab: {fileID: 7805496685237920567, guid: abc587b5abeb2294e87aa083209ec1f9, type: 3}
+  zombiePrefab: {fileID: 3358304483123953441, guid: 3f2c2c4732d11414c91ff177c4be430d, type: 3}
   playerTransform: {fileID: 2137232297}
   spawnInterval: 2
   minDistance: 5
   maxDistance: 10
-  maxZombies: 5
+  maxZombies: 1
 --- !u!4 &831834009
 Transform:
   m_ObjectHideFlags: 0
