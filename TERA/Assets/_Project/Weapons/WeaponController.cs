@@ -33,7 +33,7 @@ public class WeaponController : MonoBehaviour
     private Vector3 boltStartPosition;
     private Coroutine boltCoroutine;
 
-    private bool isMagazineInserted = false;
+    private Magazine currentMagazine;
 
     void Start()
     {
@@ -66,7 +66,7 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (isTriggerHeld && isMagazineInserted)
+        if (isTriggerHeld && currentMagazine != null && currentMagazine.currentAmmo > 0)
         {
             if (Time.time >= nextTimeToFire)
             {
@@ -74,47 +74,53 @@ public class WeaponController : MonoBehaviour
                 Fire();
             }
         }
-        else if (isTriggerHeld && !isMagazineInserted && Time.time >= nextTimeToFire)
+        else if (isTriggerHeld && Time.time >= nextTimeToFire)
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
-            if (emptyClickSound) audioSource.PlayOneShot(emptyClickSound);
+            if (currentMagazine == null || currentMagazine.currentAmmo <= 0)
+            {
+                nextTimeToFire = Time.time + 1f / fireRate;
+                if (emptyClickSound) audioSource.PlayOneShot(emptyClickSound);
+            }
         }
     }
 
     private void OnMagazineInserted(SelectEnterEventArgs args)
     {
-        isMagazineInserted = true;
+        currentMagazine = args.interactableObject.transform.GetComponent<Magazine>();
         if (reloadSound) audioSource.PlayOneShot(reloadSound);
     }
 
     private void OnMagazineRemoved(SelectExitEventArgs args)
     {
-        isMagazineInserted = false;
+        currentMagazine = null;
     }
 
     private void Fire()
     {
-        if (shootSound) audioSource.PlayOneShot(shootSound);
-        if (muzzleFlash != null) { muzzleFlash.Stop(); muzzleFlash.Play(); }
-
-        if (boltObject != null)
+        if (currentMagazine != null && currentMagazine.TryUseAmmo())
         {
-            if (boltCoroutine != null) StopCoroutine(boltCoroutine);
-            boltCoroutine = StartCoroutine(AnimateBoltCycle());
-        }
+            if (shootSound) audioSource.PlayOneShot(shootSound);
+            if (muzzleFlash != null) { muzzleFlash.Stop(); muzzleFlash.Play(); }
 
-        RaycastHit hit;
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range, hitLayers))
-        {
-            ZombieAI zombie = hit.transform.GetComponentInParent<ZombieAI>();
-            if (zombie != null)
+            if (boltObject != null)
             {
-                zombie.TakeDamage(damage, hit);
+                if (boltCoroutine != null) StopCoroutine(boltCoroutine);
+                boltCoroutine = StartCoroutine(AnimateBoltCycle());
             }
 
-            if (hit.rigidbody != null)
+            RaycastHit hit;
+            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range, hitLayers))
             {
-                hit.rigidbody.AddForce(-hit.normal * 50f);
+                ZombieAI zombie = hit.transform.GetComponentInParent<ZombieAI>();
+                if (zombie != null)
+                {
+                    zombie.TakeDamage(damage, hit);
+                }
+
+                if (hit.rigidbody != null)
+                {
+                    hit.rigidbody.AddForce(-hit.normal * 50f);
+                }
             }
         }
     }
