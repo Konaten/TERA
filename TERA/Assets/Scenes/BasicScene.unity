@@ -326,6 +326,8 @@ GameObject:
   - component: {fileID: 146863813}
   - component: {fileID: 146863812}
   - component: {fileID: 146863811}
+  - component: {fileID: 146863818}
+  - component: {fileID: 146863817}
   m_Layer: 6
   m_Name: MagAK47
   m_TagString: Untagged
@@ -618,6 +620,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146863817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146863810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10c3b4ffb779a64c9f46dce4d1ff64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChargerPickup
+  spawner: {fileID: 0}
+--- !u!114 &146863818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146863810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdac468c9a347b4b8249bd1695e68c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magazine
+  maxAmmo: 30
+  currentAmmo: 30
 --- !u!1 &152828795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 751006156712602996, guid: ae08b66befe71bc46948c8f8f0dae6c4, type: 3}
