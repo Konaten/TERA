@@ -4,15 +4,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class Joueur : MonoBehaviour
 {
-<<<<<<< HEAD
-    [Header("PV")]
+    [Header("ressource")]
     public float maxHealth = 100;
     private float currentHealth = 100;
-=======
-    private int pv = 100;
     private int argent = 100;
 
->>>>>>> dddc35463954cf8fd5343c7d81c9ff6dd13a125f
 
     private AudioSource audioSource;
     private AudioClip[] dmgClips;
@@ -35,7 +31,7 @@ public class Joueur : MonoBehaviour
         }
     }
 
-    
+
     public int Argent { get => argent; set => argent = value; }
 
     void Update()
@@ -62,19 +58,18 @@ public class Joueur : MonoBehaviour
             audioSource.PlayOneShot(clip);
         }
     }
-
-<<<<<<< HEAD
     void UpdateUI()
     {
         if (healthSlider != null)
         {
             healthSlider.value = currentHealth;
         }
-=======
+    }
+
     public void AjouterArgent(int montant)
     {
-    argent += montant;
-    Debug.Log("Argent gagné : " + montant + " | Total : " + argent);
->>>>>>> dddc35463954cf8fd5343c7d81c9ff6dd13a125f
+        argent += montant;
+        Debug.Log("Argent gagné : " + montant + " | Total : " + argent);
+
     }
 }
