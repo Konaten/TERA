@@ -698,8 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdac468c9a347b4b8249bd1695e68c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magazine
-  maxAmmo: 30
-  currentAmmo: 30
+  maxAmmo: 500
+  currentAmmo: 500
 --- !u!1 &221954379
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ MonoBehaviour:
   waveText: {fileID: 1469901466}
   waveCompletedUI: {fileID: 309406826}
   waveCompletedPanel: {fileID: 245627667}
-  currentWave: 0
+  currentWave: -1
   baseZombiesPerWave: 5
   zombiesMultiplier: 2
   timeBetweenWaves: 5

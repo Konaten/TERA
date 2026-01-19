@@ -117,6 +117,11 @@ public class ZombieSpawner : MonoBehaviour
         // Calcul de la difficulté : ex: Manche 1 = 5, Manche 2 = 7, etc.
         zombiesToSpawnRemaining = baseZombiesPerWave + (currentWave * zombiesMultiplier);
         zombiesAlive = 0;
+
+        // Manches spéciales (pour le debug)
+        if(currentWave == -1){
+            zombiesToSpawnRemaining = 1;
+        }
         
         // On lance le spawn des zombies pour cette manche
         StartCoroutine(SpawnRoutine());
