@@ -1,79 +1,173 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 
 public class ZombieSpawner : MonoBehaviour
 {
     [Header("Références")]
-    [Tooltip("Prefab du zombie à faire apparaître.")]
     public GameObject zombiePrefab;
+    public Transform playerTransform;
+    public TextMeshProUGUI waveText;
+    public GameObject waveCompletedUI;
+    public GameObject waveCompletedPanel;
 
-    [Tooltip("Transform de la caméra attachée au joueur.")]
-    public Transform playerTransform; // Référence au transform du joueur
-    [Tooltip("Intervalle de temps entre chaque apparition de zombie.")]
+    [Header("Paramètres de Manche")]
+    [Tooltip("Manche actuelle")]
+    public int currentWave = 0;
+    [Tooltip("Nombre de zombies à faire apparaître pour la manche 1")]
+    public int baseZombiesPerWave = 5;
+    [Tooltip("Combien de zombies supplémentaires par manche")]
+    public int zombiesMultiplier = 2;
+    [Tooltip("Temps de repos entre deux manches")]
+    public float timeBetweenWaves = 5f;
+
+    [Header("Progression des Stats")]
+    public float baseHealth = 100f;
+    public float healthIncreasePerWave = 20f;
+    public float baseDamage = 10f;
+    public float damageIncreasePerWave = 5f;
+
+    [Header("Paramètres de Spawn")]
     public float spawnInterval = 3.0f;
-    [Tooltip("Distance minimale entre le joueur et le zombie")]
-    public float minDistance = 5.0f; // Distance minimum du joueur
-    [Tooltip("Distance maximale entre le joueur et le zombie")]
-    public float maxDistance = 10.0f; // Distance maximum du joueur
+    public float minDistance = 5.0f;
+    public float maxDistance = 10.0f;
+    [Tooltip("Nombre max de zombies simultanés sur la carte")]
+    public int maxConcurrentZombies = 5;
 
-    [Tooltip("Nombre maximum de zombies présents en même temps dans la scène.")]
-    public int maxZombies = 5;
-    private int currentZombies = 0;
+    private int zombiesToSpawnRemaining; // Combien il reste à faire apparaître
+    private int zombiesAlive;            // Combien sont actuellement en vie
+    private bool isWaveActive = false;
 
     void Start()
     {
-        if (playerTransform == null)
+        if (playerTransform == null || zombiePrefab == null)
         {
-            throw new System.Exception("Player Transform is not assigned!");
-        }
-        if (zombiePrefab == null)
-        {
-            throw new System.Exception("Zombie Prefab is not assigned!");
+            Debug.LogError("Références manquantes dans le ZombieSpawner !");
+            return;
         }
 
+        waveCompletedUI.GetComponent<TextMeshProUGUI>().text = "";
+        waveCompletedPanel.SetActive(false);
+        StartCoroutine(WaveSystemRoutine());
+    }
+
+    // Gère l'enchaînement des manches
+    IEnumerator WaveSystemRoutine()
+    {
+        while (true)
+        {
+            currentWave++;
+            UpdateUI();
+            PrepareWave();
+
+            yield return new WaitUntil(() => zombiesToSpawnRemaining <= 0 && zombiesAlive <= 0);
+
+            yield return StartCoroutine(ShowWaveCompletedMessage());
+
+            yield return new WaitForSeconds(timeBetweenWaves);
+        }
+    }
+    IEnumerator ShowWaveCompletedMessage()
+    {
+        if (waveCompletedUI != null)
+        {
+            waveCompletedUI.SetActive(true);
+            waveCompletedPanel.SetActive(true);
+            waveCompletedUI.GetComponent<TextMeshProUGUI>().text = "MANCHE RÉUSSIE";
+
+            yield return new WaitForSeconds(3f); // Temps d'affichage du message
+
+            waveCompletedUI.SetActive(false); // Cache le message
+            waveCompletedPanel.SetActive(false);
+        }
+    }
+
+    void UpdateUI()
+    {
+        if (waveText != null)
+        {
+            string romanWave = ToRoman(currentWave);
+            waveText.text = romanWave;
+        }
+    }
+
+    private string ToRoman(int number)
+    {
+        if (number < 1) return string.Empty;
+
+        // Tableaux de correspondance
+        int[] values = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+        string[] romanNumerals = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+
+        string result = "";
+        for (int i = 0; i < values.Length; i++)
+        {
+            while (number >= values[i])
+            {
+                number -= values[i];
+                result += romanNumerals[i];
+            }
+        }
+        return result;
+    }
+
+    void PrepareWave()
+    {
+        // Calcul de la difficulté : ex: Manche 1 = 5, Manche 2 = 7, etc.
+        zombiesToSpawnRemaining = baseZombiesPerWave + (currentWave * zombiesMultiplier);
+        zombiesAlive = 0;
+        
+        // On lance le spawn des zombies pour cette manche
         StartCoroutine(SpawnRoutine());
     }
 
     IEnumerator SpawnRoutine()
     {
-        while (true)
+        while (zombiesToSpawnRemaining > 0)
         {
-            yield return new WaitForSeconds(spawnInterval);
-            SpawnZombie();
+            // Si on n'a pas atteint la limite de zombies simultanés
+            if (zombiesAlive < maxConcurrentZombies)
+            {
+                SpawnZombie();
+                yield return new WaitForSeconds(spawnInterval);
+            }
+            else
+            {
+                // On attend un peu avant de vérifier à nouveau si une place s'est libérée
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 
-    void SpawnZombie()
+void SpawnZombie()
     {
-        if (currentZombies >= maxZombies) return;
-
-        // Génère un point entre minDistance et maxDistance
+        // Calcul de la position
         Vector2 randomDir = Random.insideUnitCircle.normalized;
-        float randomDist = Random.Range(minDistance, maxDistance);
-        Vector3 spawnOffset = new Vector3(randomDir.x, 0, randomDir.y) * randomDist;
-        Vector3 spawnPos = playerTransform.position + spawnOffset;
-        spawnPos.y -= playerTransform.position.y; // On le remet en face du joueur en enlevant la hauteur de la cam
+        Vector3 spawnPos = playerTransform.position + new Vector3(randomDir.x, 0, randomDir.y) * Random.Range(minDistance, maxDistance);
+        spawnPos.y = 0; 
 
-        Vector3 directionToPlayer = playerTransform.position - spawnPos;
-        directionToPlayer.y = 0; // Empêche le zombie de pencher vers le haut/bas
+        // Apparition
+        GameObject zombieGO = Instantiate(zombiePrefab, spawnPos, Quaternion.identity);
 
-        Quaternion spawnRotation = Quaternion.LookRotation(directionToPlayer);
-
-        GameObject zombieGO = Instantiate(zombiePrefab, spawnPos, spawnRotation);
-
+        // Calcul et application des stats pour cette manche
         ZombieAI zombieAI = zombieGO.GetComponent<ZombieAI>();
         if (zombieAI != null)
         {
             zombieAI.spawner = this;
+            
+            // Calcul mathématique des stats : Base + (Manche * Augmentation)
+            zombieAI.health = baseHealth + (currentWave * healthIncreasePerWave);
+            zombieAI.damage = baseDamage + (currentWave * damageIncreasePerWave);
         }
 
-        currentZombies++;
+        zombiesAlive++;
+        zombiesToSpawnRemaining--;
     }
 
-
+    // Appelé par le script de mort du zombie
     public void OnZombieKilled()
     {
-        currentZombies--;
+        zombiesAlive--;
     }
-
 }
