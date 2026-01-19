@@ -37,4 +37,10 @@ public class Joueur : MonoBehaviour
             audioSource.PlayOneShot(clip);
         }
     }
+
+    public void AjouterArgent(int montant)
+    {
+    argent += montant;
+    Debug.Log("Argent gagné : " + montant + " | Total : " + argent);
+    }
 }
