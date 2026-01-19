@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ZombieAI : MonoBehaviour
@@ -16,6 +17,7 @@ public class ZombieAI : MonoBehaviour
     }
 
     public float health = 100;
+    public float maxHealth;
     public int argent = 100;
 
     [SerializeField] private State currentState;
@@ -41,7 +43,7 @@ public class ZombieAI : MonoBehaviour
     [Header("AttackState")]
     public float attackRange = 1f;
     public float attackCoolDown = 1f;
-    public int Degats = 20;
+    public float damage = 20;
     bool canAttack = true;
 
     [Header("DeadState")]
@@ -57,6 +59,7 @@ public class ZombieAI : MonoBehaviour
     public LayerMask whatIsGround;
     private Animator animator;
     public ZombieSpawner spawner;
+    public Slider healthBar;
 
     private Rigidbody[] allRigidbodies;
     private Collider[] allColliders;
@@ -89,6 +92,13 @@ public class ZombieAI : MonoBehaviour
         {
             Debug.LogError("Erreur : Impossible de trouver la Main Camera (le casque VR) !");
         }
+
+        maxHealth = health;
+        if (healthBar != null)
+        {
+            healthBar.maxValue = maxHealth;
+            healthBar.value = health;
+        }
     }
 
     private void Update()
@@ -120,9 +130,9 @@ public class ZombieAI : MonoBehaviour
                 break;
         }
 
-        // if(Input.GetKeyDown(KeyCode.Space)){
-        //     TakeDamage(10);
-        // }
+        if(Input.GetKeyDown(KeyCode.P)){
+            Dead();
+        }
     }
 
     private void Idle()
@@ -216,7 +226,7 @@ public class ZombieAI : MonoBehaviour
             // ATTACK IN THE ANIMATION
             canAttack = false;
             Invoke(nameof(ResetAttack), attackCoolDown);
-            playerScript.PvRemoved(Degats);
+            playerScript.PvRemoved(damage);
         }
     }
 
@@ -275,6 +285,11 @@ public class ZombieAI : MonoBehaviour
             SpawnBlood(hitInfo);
         }
         //animator.SetTrigger("isDamaged");
+
+        if (healthBar != null)
+        {
+            healthBar.value = health;
+        }
 
         if (health <= 0 && !isDead) Dead();
     }
