@@ -119,7 +119,7 @@ public class ZombieSpawner : MonoBehaviour
         zombiesAlive = 0;
 
         // Manches spéciales (pour le debug)
-        if(currentWave == -1){
+        if(currentWave <= 0){
             zombiesToSpawnRemaining = 1;
         }
         
