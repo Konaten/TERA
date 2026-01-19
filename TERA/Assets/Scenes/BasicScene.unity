@@ -736,8 +736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176.8524, y: -246.5159}
+  m_AnchoredPosition: {x: -108.286896, y: 61.628975}
+  m_SizeDelta: {x: 393.4262, y: -123.25795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245627669
 MonoBehaviour:
@@ -7284,7 +7284,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1746255838}
-  - {fileID: 221954380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1042249796
@@ -7301,7 +7300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Vendeur
   weaponPrefab: {fileID: 5656312443073736961, guid: 8ea11e7d5af0a374db63c404e90dc013, type: 3}
   prixArme: 10
-  spawnPoint: {fileID: 221954380}
+  spawnPoint: {fileID: 0}
   distanceAchatMax: 2.5
 --- !u!1 &1083387577
 GameObject:
@@ -7765,7 +7764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -346.9, y: 75}
+  m_AnchoredPosition: {x: -390, y: 75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469901466
