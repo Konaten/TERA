@@ -1550,7 +1550,7 @@ MonoBehaviour:
   playerDetectionRange: 10
   chaseRange: 15
   chaseSpeed: 2
-  attackRange: 1.5
+  attackRange: 2.5
   attackCoolDown: 2
   damage: 20
   timeBeforeDestroy: 3
