@@ -26,6 +26,7 @@ public class WeaponController : MonoBehaviour
 
     [Header("Effets Visuels")]
     public ParticleSystem muzzleFlash;
+    public GameObject bloodEffectPrefab;
 
     [Header("Animation Culasse (Bolt)")]
     public Transform boltObject;
@@ -115,6 +116,7 @@ public class WeaponController : MonoBehaviour
                 if (zombie != null)
                 {
                     zombie.TakeDamage(damage, hit);
+                    SpawnBlood(hit);
                 }
 
                 if (hit.rigidbody != null)
@@ -150,5 +152,12 @@ public class WeaponController : MonoBehaviour
         }
 
         boltObject.localPosition = boltStartPosition;
+    }
+
+    void SpawnBlood(RaycastHit hitInfo)
+    {
+        GameObject blood = Instantiate(bloodEffectPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+        blood.transform.parent = hitInfo.transform;
+        Destroy(blood, 1f); 
     }
 }
