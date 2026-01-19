@@ -58,11 +58,21 @@ public class ZombieAI : MonoBehaviour
     private Animator animator;
     public ZombieSpawner spawner;
 
+    private Rigidbody[] allRigidbodies;
+    private Collider[] allColliders;
+    private Rigidbody rootRigidbody;
 
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        rootRigidbody = GetComponent<Rigidbody>();
+
+        allRigidbodies = GetComponentsInChildren<Rigidbody>();
+        allColliders = GetComponentsInChildren<Collider>();
+
+        SetRagdollState(false);
+
         currentState = State.IdleState;
 
         if (Camera.main != null)
@@ -212,8 +222,19 @@ public class ZombieAI : MonoBehaviour
 
     private void Dead()
     {
+        if (isDead) return;
+
+        isDead = true;
+        currentState = State.DeadState;
+
+        if (navMeshAgent != null) navMeshAgent.enabled = false;
+
         navMeshAgent.enabled = false;
         animator.enabled = false;
+
+        SetRagdollState(true);
+
+        DestroyZombie();
     }
 
     // RESET
@@ -255,7 +276,7 @@ public class ZombieAI : MonoBehaviour
         }
         //animator.SetTrigger("isDamaged");
 
-        if (health <= 0 && !isDead) DestroyZombie();
+        if (health <= 0 && !isDead) Dead();
     }
 
     void SpawnBlood(RaycastHit hit)
@@ -289,5 +310,25 @@ public class ZombieAI : MonoBehaviour
         //     player.gameObject.GetComponent<RessourcePlayer>().perdre_vie(Degats);
         // }
         Debug.Log("attackzombie");
+    }
+
+    private void SetRagdollState(bool active)
+    {
+        foreach (Rigidbody rb in allRigidbodies)
+        {
+            if (rb == rootRigidbody) 
+            {
+                rb.isKinematic = true; 
+                continue;
+            }
+            
+            rb.isKinematic = !active;
+            rb.useGravity = active;
+        }
+
+        foreach (Collider col in allColliders)
+        {
+            col.enabled = true;
+        }
     }
 }
