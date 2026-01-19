@@ -7014,6 +7014,7 @@ MonoBehaviour:
     m_Bits: 385
   fireRate: 10
   muzzleFlash: {fileID: 249813202}
+  bloodEffectPrefab: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
   boltObject: {fileID: 152828796}
   boltRecoilDistance: -0.05
 --- !u!64 &827558714
@@ -7062,7 +7063,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831834007}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
   m_Name: 
@@ -12701,6 +12702,7 @@ MonoBehaviour:
     m_Bits: 385
   fireRate: 3
   muzzleFlash: {fileID: 948359189}
+  bloodEffectPrefab: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
   boltObject: {fileID: 755657004}
   boltRecoilDistance: 0.05
 --- !u!82 &1694308634
