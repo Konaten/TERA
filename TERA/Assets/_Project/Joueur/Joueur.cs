@@ -4,6 +4,8 @@ using UnityEngine;
 public class Joueur : MonoBehaviour
 {
     private int pv = 100;
+    private int argent = 100;
+
 
     private AudioSource audioSource;
     private AudioClip[] dmgClips;
@@ -15,6 +17,9 @@ public class Joueur : MonoBehaviour
         // Charge tous les sons de dégâts depuis Resources/Joueur/DmgSound
         dmgClips = Resources.LoadAll<AudioClip>("Joueur/DmgSound");
     }
+
+    
+    public int Argent { get => argent; set => argent = value; }
 
     void Update()
     {
@@ -31,5 +36,11 @@ public class Joueur : MonoBehaviour
             audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.PlayOneShot(clip);
         }
+    }
+
+    public void AjouterArgent(int montant)
+    {
+    argent += montant;
+    Debug.Log("Argent gagné : " + montant + " | Total : " + argent);
     }
 }

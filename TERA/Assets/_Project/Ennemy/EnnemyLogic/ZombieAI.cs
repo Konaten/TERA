@@ -291,9 +291,11 @@ public class ZombieAI : MonoBehaviour
 
     private void DestroyZombie()
     {
-        // player.gameObject.GetComponent<RessourcePlayer>().gagner_argent(argent);
-        // isDead = true;
-        // currentState = State.DeadState;
+        isDead = true;
+        currentState = State.DeadState;
+
+        playerScript.AjouterArgent(argent);
+
         if (spawner != null)
         {
             spawner.OnZombieKilled();
