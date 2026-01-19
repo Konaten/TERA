@@ -4,6 +4,8 @@ using UnityEngine;
 public class Joueur : MonoBehaviour
 {
     private int pv = 100;
+    private int argent = 100;
+
 
     private AudioSource audioSource;
     private AudioClip[] dmgClips;
@@ -15,6 +17,9 @@ public class Joueur : MonoBehaviour
         // Charge tous les sons de dégâts depuis Resources/Joueur/DmgSound
         dmgClips = Resources.LoadAll<AudioClip>("Joueur/DmgSound");
     }
+
+    
+    public int Argent { get => argent; set => argent = value; }
 
     void Update()
     {
