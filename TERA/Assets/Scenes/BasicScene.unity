@@ -391,9 +391,9 @@ GameObject:
   - component: {fileID: 146863815}
   - component: {fileID: 146863814}
   - component: {fileID: 146863813}
-  - component: {fileID: 146863812}
   - component: {fileID: 146863811}
   - component: {fileID: 146863817}
+  - component: {fileID: 146863818}
   m_Layer: 6
   m_Name: MagAK47
   m_TagString: Untagged
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 146863812}
+  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 8
   m_DistanceCalculationMode: 1
@@ -567,27 +567,6 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
---- !u!65 &146863812
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146863810}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.024083924, y: 0.19363742, z: 0.12379114}
-  m_Center: {x: 0, y: -0.08950912, z: -0.06699868}
 --- !u!54 &146863813
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -700,6 +679,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Magazine
   maxAmmo: 30
   currentAmmo: 30
+--- !u!64 &146863818
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146863810}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
 --- !u!1 &245627667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,8 +1340,8 @@ GameObject:
   - component: {fileID: 382719708}
   - component: {fileID: 382719707}
   - component: {fileID: 382719706}
-  - component: {fileID: 382719705}
   - component: {fileID: 382719704}
+  - component: {fileID: 382719711}
   m_Layer: 6
   m_Name: MagM1911
   m_TagString: Untagged
@@ -1362,27 +1363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Magazine
   maxAmmo: 15
   currentAmmo: 15
---- !u!65 &382719705
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 382719703}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.014564801, y: 0.12737146, z: 0.04729653}
-  m_Center: {x: 0, y: 0.011527369, z: -0.008723869}
 --- !u!114 &382719706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,7 +1377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 382719705}
+  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 8
   m_DistanceCalculationMode: 1
@@ -1647,6 +1627,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &382719711
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382719703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: b812e42521a5a27499e76cc5ed56e3ac, type: 3}
 --- !u!1001 &441087506
 PrefabInstance:
   m_ObjectHideFlags: 0
