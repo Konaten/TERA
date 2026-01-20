@@ -17,7 +17,11 @@ public class Joueur : MonoBehaviour
     [Header("UI")]
     public Slider healthSlider;
     public TextMeshProUGUI argentText;
+    public TextMeshProUGUI ballesText;
     public float lerpSpeed = 5f;
+
+    [Header("Armement")]
+    public Magazine currentMagazine;
 
     void Start()
     {
@@ -32,6 +36,7 @@ public class Joueur : MonoBehaviour
             healthSlider.value = maxHealth;
         }
         UpdateArgentUI();
+        UpdateAmmoUI();
     }
 
 
@@ -51,6 +56,7 @@ public class Joueur : MonoBehaviour
         {
             healthSlider.value = Mathf.Lerp(healthSlider.value, currentHealth, Time.deltaTime * lerpSpeed);
         }
+        UpdateAmmoUI();
     }
 
     public void PvRemoved(float dmgTaken)
@@ -82,6 +88,21 @@ public class Joueur : MonoBehaviour
         if (argentText != null)
         {
             argentText.text = argent.ToString() + " $";
+        }
+    }
+
+    public void UpdateAmmoUI()
+    {
+        if (ballesText != null)
+        {
+            if (currentMagazine != null)
+            {
+                ballesText.text = currentMagazine.currentAmmo + " / " + currentMagazine.maxAmmo;
+            }
+            else
+            {
+                ballesText.text = "0 / 0";
+            }
         }
     }
 
