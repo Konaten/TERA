@@ -795,7 +795,7 @@ Transform:
   m_GameObject: {fileID: 146863810}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.442, y: 1.749, z: 2.42109}
+  m_LocalPosition: {x: -1.442, y: -0.84597003, z: 2.42109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2267,7 +2267,7 @@ Transform:
   m_GameObject: {fileID: 448641984}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77496, y: 1.16362, z: 2.155}
+  m_LocalPosition: {x: -1.77496, y: -0.64, z: 2.155}
   m_LocalScale: {x: 1, y: 0.72063607, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3005,7 +3005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270e48c485dbb304281b9b6747327e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vendeur
-  weaponPrefab: {fileID: 4241129662513950276, guid: d9b7d601edf703747947309ef2e40587, type: 3}
+  weaponPrefab: {fileID: 1694308627}
   prixArme: 50
   spawnPoint: {fileID: 59037276}
   distanceAchatMax: 2.5
@@ -3061,7 +3061,7 @@ MonoBehaviour:
   waveText: {fileID: 1469901466}
   waveCompletedUI: {fileID: 309406826}
   waveCompletedPanel: {fileID: 245627667}
-  currentWave: -100
+  currentWave: 0
   baseZombiesPerWave: 5
   zombiesMultiplier: 2
   timeBetweenWaves: 5
@@ -8092,11 +8092,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae30871d6c0f2ab4d90c425847e1b406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vendeur_chargeur
-  chargeurPrefab: {fileID: 5656312443073736961, guid: 8ea11e7d5af0a374db63c404e90dc013, type: 3}
+  chargeurPrefab: {fileID: 382719703}
   spawnPoint: {fileID: 1560784655}
   distanceAchatMax: 2.5
-  prixParBalle: 1
-  pasIncrement: 15
+  prixParBalle: 2
+  pasIncrement: 10
   texteQuantite: {fileID: 1429144848}
 --- !u!1 &1083387577
 GameObject:
@@ -9039,7 +9039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b812e42521a5a27499e76cc5ed56e3ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7980001
+      value: -2.42
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b812e42521a5a27499e76cc5ed56e3ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10185,7 +10185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3058892564860710281, guid: d9b7d601edf703747947309ef2e40587, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.77497
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 3058892564860710281, guid: d9b7d601edf703747947309ef2e40587, type: 3}
       propertyPath: m_LocalPosition.z

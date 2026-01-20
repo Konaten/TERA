@@ -1541,7 +1541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieAI
   health: 100
   maxHealth: 0
-  argent: 100
+  argent: 30
   currentState: 0
   minRestDuration: 2
   maxRestDuration: 8
