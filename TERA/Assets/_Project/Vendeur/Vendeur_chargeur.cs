@@ -15,11 +15,13 @@ public class VendeurChargeur : MonoBehaviour
 
     private int quantiteSelectionnee = 0;
     private Joueur joueurRef;
+    private Transform joueurTransform;
 
     void Start()
     {
         joueurRef = Object.FindAnyObjectByType<Joueur>();
-        if(joueurRef == null)
+        joueurTransform = Camera.main.transform;
+        if(joueurRef == null || joueurTransform == null)
         {
             Debug.LogError("VendeurChargeur: Impossible de trouver le joueur dans la scène.");
         }
@@ -48,7 +50,7 @@ public class VendeurChargeur : MonoBehaviour
         Debug.Log("Acheter");
         if (joueurRef == null || quantiteSelectionnee <= 0) return;
 
-        if (!ToolsSceneRange.IsWithinRange(joueurRef.transform, transform, distanceAchatMax))
+        if (!ToolsSceneRange.IsWithinRange(joueurTransform, transform, distanceAchatMax))
         {
             Debug.Log("Trop loin !");
             return;

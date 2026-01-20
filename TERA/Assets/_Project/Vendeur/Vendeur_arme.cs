@@ -1,72 +1,66 @@
 using UnityEngine;
+using TMPro;
 
-public class Vendeur : MonoBehaviour
+public class VendeurArme : MonoBehaviour
 {
     [Header("Paramètres")]
     public GameObject weaponPrefab;
-    public int prixArme = 50;
     public Transform spawnPoint;
     public float distanceAchatMax = 3.5f;
+    public int prixArme = 25;
 
+    [Header("UI")]
+    public TextMeshProUGUI textePrix;
 
+    private Joueur joueurRef;
     private Transform joueurTransform;
-    private Joueur joueurScript;
-    private bool joueurEstDansLaZone = false;
 
     void Start()
     {
-        if (Camera.main != null)
+        joueurRef = Object.FindAnyObjectByType<Joueur>();
+        joueurTransform = Camera.main.transform;
+        if (joueurRef == null || joueurTransform == null)
         {
-            joueurTransform = Camera.main.transform;
-            joueurScript = FindObjectOfType<Joueur>();
+            Debug.LogError("VendeurArme: Impossible de trouver le joueur dans la scène.");
         }
-        else {
-            Debug.Log("Pas de cam sur la scène WTF MAN");
-        }
+        UpdateUI();
     }
 
-    void Update()
+    // Appelé par ton bouton unique [ACHETER]
+    public void ConfirmerAchat()
     {
-        if (joueurScript == null) return;
+        if (joueurRef == null || joueurTransform == null) return;
 
-        // Utilisation de ton script ToolsSceneRange
-        bool estAPortee = ToolsSceneRange.IsWithinRange(joueurTransform, transform, distanceAchatMax);
-
-        // On détecte le moment précis où le joueur "entre" dans la zone
-        if (estAPortee && !joueurEstDansLaZone)
+        // Vérification de la distance
+        if (!ToolsSceneRange.IsWithinRange(joueurTransform, transform, distanceAchatMax))
         {
-            TenterAchat(joueurScript);
-            joueurEstDansLaZone = true;
+            Debug.Log("Trop loin pour acheter l'arme !");
+            return;
         }
-        // Reset quand le joueur sort de la zone
-        else if (!estAPortee && joueurEstDansLaZone)
-        {
-            joueurEstDansLaZone = false;
-        }
-    }
 
-    public void TenterAchat(Joueur joueur)
-    {
-        if (joueur.Argent >= prixArme)
+        if (joueurRef.Argent >= prixArme)
         {
-            joueur.Argent -= prixArme;
-            ApparitionArme();
+            joueurRef.Argent -= prixArme;
+            Instantiate(weaponPrefab, spawnPoint.position, spawnPoint.rotation);
+            Debug.Log("Arme achetée !");
         }
         else
         {
-            Debug.Log("Pas assez d'argent !");
+            Debug.Log("Pas assez d'argent pour l'arme.");
         }
     }
 
-    private void ApparitionArme()
+    private void UpdateUI()
     {
-        Instantiate(weaponPrefab, spawnPoint.position, spawnPoint.rotation);
+        if (textePrix != null)
+        {
+            textePrix.text = "Prix de l'arme : " + prixArme + " $";
+        }
     }
 
-    // Visualisation de la zone dans l'éditeur
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanceAchatMax);
     }
 }
