@@ -84,7 +84,7 @@ public class VendeurChargeur : MonoBehaviour
     private void UpdateUI()
     {
         if (texteQuantite != null)
-            texteQuantite.text = quantiteSelectionnee.ToString();
+            texteQuantite.text = "Nombre de balle: " + quantiteSelectionnee.ToString() + "\nPrix total: " + (quantiteSelectionnee * prixParBalle).ToString() + " $";
     }
 
 
