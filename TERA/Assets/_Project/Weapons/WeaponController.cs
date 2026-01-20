@@ -19,6 +19,9 @@ public class WeaponController : MonoBehaviour
     public float damage = 20f;
     public LayerMask hitLayers;
 
+    [Header("Références Externes")]
+    public Joueur joueur;
+
     [Header("Cadence de Tir")]
     public float fireRate = 10f; 
     private float nextTimeToFire = 0f;
@@ -89,11 +92,13 @@ public class WeaponController : MonoBehaviour
     {
         currentMagazine = args.interactableObject.transform.GetComponent<Magazine>();
         if (reloadSound) audioSource.PlayOneShot(reloadSound);
+        if (joueur != null) joueur.currentMagazine = currentMagazine;
     }
 
     private void OnMagazineRemoved(SelectExitEventArgs args)
     {
         currentMagazine = null;
+        if (joueur != null) joueur.currentMagazine = null;
     }
 
     private void Fire()
