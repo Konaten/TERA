@@ -8246,7 +8246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Joueur
   maxHealth: 100
-  healthSlider: {fileID: 0}
+  healthSlider: {fileID: 324138486}
   argentText: {fileID: 30767906}
   lerpSpeed: 5
 --- !u!82 &1011006558
