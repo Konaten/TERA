@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(AudioSource))]
 public class Joueur : MonoBehaviour
@@ -15,6 +16,7 @@ public class Joueur : MonoBehaviour
 
     [Header("UI")]
     public Slider healthSlider;
+    public TextMeshProUGUI argentText;
     public float lerpSpeed = 5f;
 
     void Start()
@@ -29,10 +31,19 @@ public class Joueur : MonoBehaviour
             healthSlider.maxValue = maxHealth;
             healthSlider.value = maxHealth;
         }
+        UpdateArgentUI();
     }
 
 
-    public int Argent { get => argent; set => argent = value; }
+    public int Argent 
+    { 
+        get => argent; 
+        set 
+        { 
+            argent = value; 
+            UpdateArgentUI(); 
+        } 
+    }
 
     void Update()
     {
@@ -66,9 +77,18 @@ public class Joueur : MonoBehaviour
         }
     }
 
+    void UpdateArgentUI()
+    {
+        if (argentText != null)
+        {
+            argentText.text = argent.ToString() + " $";
+        }
+    }
+
     public void AjouterArgent(int montant)
     {
         argent += montant;
+        UpdateArgentUI();
         Debug.Log("Argent gagné : " + montant + " | Total : " + argent);
 
     }
