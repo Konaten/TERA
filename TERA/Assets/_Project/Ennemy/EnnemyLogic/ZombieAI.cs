@@ -324,7 +324,7 @@ public class ZombieAI : MonoBehaviour
         // if(Vector3.Distance(player.position, transform.position) < attackRange){
         //     player.gameObject.GetComponent<RessourcePlayer>().perdre_vie(Degats);
         // }
-        Debug.Log("attackzombie");
+        // Debug.Log("attackzombie");
     }
 
     private void SetRagdollState(bool active)
