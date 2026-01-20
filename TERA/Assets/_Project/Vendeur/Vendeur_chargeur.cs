@@ -21,7 +21,7 @@ public class VendeurChargeur : MonoBehaviour
     {
         joueurRef = Object.FindAnyObjectByType<Joueur>();
         joueurTransform = Camera.main.transform;
-        if(joueurRef == null || joueurTransform == null)
+        if (joueurRef == null || joueurTransform == null)
         {
             Debug.LogError("VendeurChargeur: Impossible de trouver le joueur dans la scène.");
         }
@@ -62,7 +62,7 @@ public class VendeurChargeur : MonoBehaviour
         {
             joueurRef.Argent -= coutTotal;
             SpawnChargeurSurMesure(quantiteSelectionnee);
-            
+
             // On reset après l'achat
             quantiteSelectionnee = 0;
             UpdateUI();
@@ -76,10 +76,13 @@ public class VendeurChargeur : MonoBehaviour
 
         if (scriptChargeur != null)
         {
+            // On définit le max d'abord
+            scriptChargeur.maxAmmo = quantite;
             scriptChargeur.currentAmmo = quantite;
-
-            if (quantite > scriptChargeur.maxAmmo) 
-                scriptChargeur.maxAmmo = quantite;
+        }
+        else
+        {
+            Debug.LogError("Le prefab de chargeur n'a pas de script Magazine attaché !");
         }
     }
 
@@ -95,4 +98,4 @@ public class VendeurChargeur : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, distanceAchatMax);
     }
-}   
+}
