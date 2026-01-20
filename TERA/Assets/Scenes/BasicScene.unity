@@ -2951,6 +2951,7 @@ MonoBehaviour:
   baseZombiesPerWave: 5
   zombiesMultiplier: 2
   timeBetweenWaves: 5
+  initialDelay: 15
   baseHealth: 100
   healthIncreasePerWave: 20
   baseDamage: 10

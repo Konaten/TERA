@@ -21,6 +21,8 @@ public class ZombieSpawner : MonoBehaviour
     public int zombiesMultiplier = 2;
     [Tooltip("Temps de repos entre deux manches")]
     public float timeBetweenWaves = 5f;
+    [Tooltip("Temps avant le lancement de la première manche")]
+    public float initialDelay = 10f;
 
     [Header("Progression des Stats")]
     public float baseHealth = 100f;
@@ -55,6 +57,18 @@ public class ZombieSpawner : MonoBehaviour
     // Gère l'enchaînement des manches
     IEnumerator WaveSystemRoutine()
     {
+        if (initialDelay > 0)
+        {
+            float timer = initialDelay;
+            while (timer > 0)
+            {
+                if (waveText != null) 
+                    waveText.text = "PRÉPAREZ VOUS DÉBUT DANS : " + Mathf.Ceil(timer).ToString();
+                
+                yield return new WaitForSeconds(1f);
+                timer--;
+            }
+        }
         while (true)
         {
             currentWave++;
