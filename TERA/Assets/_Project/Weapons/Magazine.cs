@@ -4,11 +4,15 @@ public class Magazine : MonoBehaviour
 {
     [Header("Munitions")]
     public int maxAmmo = 30;
-    public int currentAmmo;
+    public int currentAmmo = -1; 
 
     void Start()
     {
-        currentAmmo = maxAmmo;
+        // On ne remplit que si le vendeur n'a pas déjà mis de balles
+        if (currentAmmo == -1)
+        {
+            currentAmmo = maxAmmo;
+        }
     }
 
     public bool TryUseAmmo()
