@@ -19,12 +19,17 @@ public class VendeurChargeur : MonoBehaviour
     void Start()
     {
         joueurRef = Object.FindAnyObjectByType<Joueur>();
+        if(joueurRef == null)
+        {
+            Debug.LogError("VendeurChargeur: Impossible de trouver le joueur dans la scène.");
+        }
         UpdateUI();
     }
 
     // Appelé par le bouton [+]
     public void AugmenterQuantite()
     {
+        Debug.Log("Augmenter");
         quantiteSelectionnee += pasIncrement;
         UpdateUI();
     }
@@ -32,6 +37,7 @@ public class VendeurChargeur : MonoBehaviour
     // Appelé par le bouton [-]
     public void DiminuerQuantite()
     {
+        Debug.Log("Diminuer");
         quantiteSelectionnee = Mathf.Max(0, quantiteSelectionnee - pasIncrement);
         UpdateUI();
     }
@@ -39,6 +45,7 @@ public class VendeurChargeur : MonoBehaviour
     // Appelé par le bouton [ACHETER]
     public void ConfirmerAchat()
     {
+        Debug.Log("Acheter");
         if (joueurRef == null || quantiteSelectionnee <= 0) return;
 
         if (!ToolsSceneRange.IsWithinRange(joueurRef.transform, transform, distanceAchatMax))
@@ -77,7 +84,7 @@ public class VendeurChargeur : MonoBehaviour
     private void UpdateUI()
     {
         if (texteQuantite != null)
-            texteQuantite.text = quantiteSelectionnee.ToString();
+            texteQuantite.text = "Nombre de balle: " + quantiteSelectionnee.ToString() + "\nPrix total: " + (quantiteSelectionnee * prixParBalle).ToString() + " $";
     }
 
 
