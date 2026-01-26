@@ -5732,7 +5732,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -7335,8 +7336,10 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 385
+  joueur: {fileID: 0}
   fireRate: 10
   muzzleFlash: {fileID: 249813202}
+  bloodEffectPrefab: {fileID: 0}
   boltObject: {fileID: 152828796}
   boltRecoilDistance: -0.05
 --- !u!64 &827558714
@@ -7399,6 +7402,7 @@ MonoBehaviour:
   baseZombiesPerWave: 1
   zombiesMultiplier: 1
   timeBetweenWaves: 5
+  initialDelay: 10
   baseHealth: 100
   healthIncreasePerWave: 20
   baseDamage: 10
@@ -7483,7 +7487,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -12413,6 +12418,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Joueur
   maxHealth: 100
   healthSlider: {fileID: 1152159410}
+  argentText: {fileID: 0}
+  ballesText: {fileID: 0}
+  lerpSpeed: 5
+  currentMagazine: {fileID: 0}
 --- !u!82 &1011006558
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13439,8 +13448,10 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 385
+  joueur: {fileID: 0}
   fireRate: 3
   muzzleFlash: {fileID: 948359189}
+  bloodEffectPrefab: {fileID: 0}
   boltObject: {fileID: 755657004}
   boltRecoilDistance: 0.05
 --- !u!82 &1694308634
