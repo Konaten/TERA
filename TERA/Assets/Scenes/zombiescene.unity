@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8785100766420200308, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
+      propertyPath: chargeurPrefab
+      value: 
+      objectReference: {fileID: 5656312443073736961, guid: 8ea11e7d5af0a374db63c404e90dc013, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7235,6 +7239,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1810058036}
   argentText: {fileID: 1709378530}
   ballesText: {fileID: 297324375}
+  mancheWinText: {fileID: 0}
+  mancheWinPanel: {fileID: 0}
   lerpSpeed: 5
   currentMagazine: {fileID: 0}
 --- !u!82 &2091964511

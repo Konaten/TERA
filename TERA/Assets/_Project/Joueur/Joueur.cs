@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using Unity.XR.CoreUtils;
 
 [RequireComponent(typeof(AudioSource))]
 public class Joueur : MonoBehaviour
@@ -18,6 +21,8 @@ public class Joueur : MonoBehaviour
     public Slider healthSlider;
     public TextMeshProUGUI argentText;
     public TextMeshProUGUI ballesText;
+    public TextMeshProUGUI mancheWinText;
+    public GameObject mancheWinPanel;
     public float lerpSpeed = 5f;
 
     [Header("Armement")]
@@ -25,6 +30,7 @@ public class Joueur : MonoBehaviour
 
     void Start()
     {
+
         audioSource = GetComponent<AudioSource>();
 
         // Charge tous les sons de dégâts depuis Resources/Joueur/DmgSound
@@ -64,6 +70,13 @@ public class Joueur : MonoBehaviour
         currentHealth -= dmgTaken;
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            GameOver();
+            Debug.Log("Joueur mort !");
+            
+        }
 
         UpdateUI();
 
@@ -131,5 +144,30 @@ public class Joueur : MonoBehaviour
         {
             return false;
         }
+    }
+
+    void GameOver()
+    {
+        StartCoroutine(RestartGameAfterDelay());
+    }
+
+    IEnumerator RestartGameAfterDelay()
+    {
+        if (mancheWinPanel != null)
+        {
+            mancheWinPanel.SetActive(true);
+        }
+
+        if (mancheWinText != null)
+        {
+            mancheWinText.text = "GAME OVER";
+            mancheWinText.color = Color.red;
+        }
+        yield return new WaitForSeconds(5f);
+
+        XROrigin xrOrigin = GetComponent<XROrigin>();
+        xrOrigin.MoveCameraToWorldLocation(Vector3.zero);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -31,6 +31,8 @@ public class VendeurArme : MonoBehaviour
     {
         if (joueurRef == null || joueurTransform == null) return;
 
+        Debug.Log("Tentative d'achat d'une arme...");
+
         // Vérification de la distance
         if (!ToolsSceneRange.IsWithinRange(joueurTransform, transform, distanceAchatMax))
         {
