@@ -3,10 +3,11 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public Transform player;
+    public Joueur playerScript;
     public GameObject pivot;
-    public float interactDistance = 2f; 
-    public float openAngle = 90f;       
-    public float openSpeed = 2f;       
+    public float interactDistance = 2f;
+    public float openAngle = 90f;
+    public float openSpeed = 2f;
 
     private bool isOpen = false;
     private Quaternion closedRotation;
@@ -14,6 +15,13 @@ public class Door : MonoBehaviour
 
     void Start()
     {
+        playerScript = Object.FindAnyObjectByType<Joueur>();
+        player = Camera.main.transform;
+        if (playerScript == null || player == null)
+        {
+            Debug.LogError("Door: Impossible de trouver le joueur dans la scène.");
+        }
+
         Debug.Log("pivot " + pivot.name);
         if (pivot == null)
         {
@@ -21,7 +29,7 @@ public class Door : MonoBehaviour
             enabled = false;
             return;
         }
-        
+
         closedRotation = pivot.transform.rotation;
         targetRotation = closedRotation;
     }

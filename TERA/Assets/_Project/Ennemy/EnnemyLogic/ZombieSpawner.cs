@@ -163,7 +163,7 @@ void SpawnZombie()
     {
         // Calcul de la position
         Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector3 spawnPos = playerTransform.position + new Vector3(randomDir.x, 0, randomDir.y) * Random.Range(minDistance, maxDistance);
+        Vector3 spawnPos = playerTransform.position + new Vector3(randomDir.x, playerTransform.position.y + 2, randomDir.y) * Random.Range(minDistance, maxDistance);
         spawnPos.y = 0; 
 
         // Apparition
