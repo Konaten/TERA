@@ -3264,7 +3264,6 @@ GameObject:
   - component: {fileID: 743259112}
   - component: {fileID: 743259111}
   - component: {fileID: 743259110}
-  - component: {fileID: 743259113}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -3347,38 +3346,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &743259113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743259109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
-  m_SerializedVersion: 0
-  m_AgentTypeID: 0
-  m_CollectObjects: 1
-  m_Size: {x: 500, y: 50, z: 550}
-  m_Center: {x: 550, y: 0, z: 550}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 1
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 1
-  m_VoxelSize: 0.8
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
-  m_BuildHeightMesh: 0
 --- !u!1001 &746419262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4445,68 +4412,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116677097}
   m_CullTransparentMesh: 1
---- !u!1 &1135112642
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1135112644}
-  - component: {fileID: 1135112643}
-  m_Layer: 0
-  m_Name: ZombieSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1135112643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135112642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
-  zombiePrefab: {fileID: 3358304483123953441, guid: 3f2c2c4732d11414c91ff177c4be430d, type: 3}
-  playerTransform: {fileID: 2091964507}
-  waveText: {fileID: 1285353911}
-  waveCompletedUI: {fileID: 1824557294}
-  waveCompletedPanel: {fileID: 1116677097}
-  currentWave: 0
-  baseZombiesPerWave: 2
-  zombiesMultiplier: 2
-  timeBetweenWaves: 5
-  initialDelay: 2
-  baseHealth: 50
-  healthIncreasePerWave: 10
-  baseDamage: 2
-  damageIncreasePerWave: 3
-  spawnInterval: 3
-  minDistance: 5
-  maxDistance: 10
-  maxConcurrentZombies: 5
---- !u!4 &1135112644
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135112642}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.3325, y: 0.54339, z: 73.27119}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1187551528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5353,6 +5258,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7704083737561874031, guid: 573c113741e3d4f428d78dbe6ed5a13f, type: 3}
   m_PrefabInstance: {fileID: 1448829222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1478522571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478522573}
+  - component: {fileID: 1478522572}
+  m_Layer: 0
+  m_Name: ZombieSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1478522572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478522571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3d4c5e82728d941a2c3a4995a09059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
+  zombiePrefab: {fileID: 3358304483123953441, guid: 3f2c2c4732d11414c91ff177c4be430d, type: 3}
+  playerTransform: {fileID: 2091964507}
+  waveText: {fileID: 1285353911}
+  waveCompletedUI: {fileID: 1824557294}
+  waveCompletedPanel: {fileID: 1116677097}
+  currentWave: 0
+  baseZombiesPerWave: 3
+  zombiesMultiplier: 1
+  timeBetweenWaves: 5
+  initialDelay: 10
+  baseHealth: 50
+  healthIncreasePerWave: 20
+  baseDamage: 2
+  damageIncreasePerWave: 2
+  spawnInterval: 3
+  minDistance: 5
+  maxDistance: 10
+  maxConcurrentZombies: 5
+--- !u!4 &1478522573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478522571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1487728975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7709,4 +7676,4 @@ SceneRoots:
   - {fileID: 1187551528}
   - {fileID: 1438179701}
   - {fileID: 2091964505}
-  - {fileID: 1135112644}
+  - {fileID: 1478522573}
