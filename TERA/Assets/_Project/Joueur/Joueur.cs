@@ -113,4 +113,18 @@ public class Joueur : MonoBehaviour
         Debug.Log("Argent gagné : " + montant + " | Total : " + argent);
 
     }
+
+    public bool RetirerArgent(int montant)
+    {
+        if (argent >= montant)
+        {
+            argent -= montant;
+            UpdateArgentUI();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
