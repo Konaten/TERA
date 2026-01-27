@@ -1,11 +1,11 @@
 using UnityEngine;
 
+
 public class Door : MonoBehaviour
 {
-    public Transform player;
-    public Joueur playerScript;
+    private  Joueur playerScript;
+    private Transform player;
     public GameObject pivot;
-    public float interactDistance = 2f;
     public float openAngle = 90f;
     public float openSpeed = 2f;
 
@@ -22,28 +22,25 @@ public class Door : MonoBehaviour
             Debug.LogError("Door: Impossible de trouver le joueur dans la scène.");
         }
 
-        Debug.Log("pivot " + pivot.name);
         if (pivot == null)
         {
-            Debug.LogError("La porte doit avoir un parent qui sert de pivot !");
             enabled = false;
             return;
         }
 
         closedRotation = pivot.transform.rotation;
         targetRotation = closedRotation;
+
+        var interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        if (interactable != null)
+        {
+            interactable.selectEntered.AddListener(_ => ToggleDoor());
+            Debug.Log("Appuyé");
+        }
     }
 
     void Update()
     {
-        if (player == null) return;
-
-        float distance = Vector3.Distance(player.position, pivot.transform.position);
-        if (distance <= interactDistance && Input.GetKeyDown(KeyCode.X))
-        {
-            ToggleDoor();
-        }
-
         pivot.transform.rotation = Quaternion.Lerp(pivot.transform.rotation, targetRotation, Time.deltaTime * openSpeed);
     }
 
