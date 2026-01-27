@@ -189,6 +189,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1325699165879102314, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325699165879102314, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 7731530659559197825, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
       propertyPath: m_Name
       value: Vendeur Chargeur AK
@@ -7997,6 +8005,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1325699165879102314, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.576
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325699165879102314, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.257
+      objectReference: {fileID: 0}
     - target: {fileID: 7731530659559197825, guid: 9a9cfcf57afdee540bdf0d5c43d669e8, type: 3}
       propertyPath: m_Name
       value: Vendeur Chargeur Pistolet
