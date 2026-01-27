@@ -8,6 +8,13 @@ public class ZombieSpawner : MonoBehaviour
     [Header("Références")]
     public GameObject zombiePrefab;
     public Transform playerTransform;
+
+    public Transform transformRound1;
+    public Transform transformRound2;
+    public Transform transformRound3;
+
+    private Transform currentTransform;
+    
     public TextMeshProUGUI waveText;
     public GameObject waveCompletedUI;
     public GameObject waveCompletedPanel;
@@ -49,6 +56,7 @@ public class ZombieSpawner : MonoBehaviour
             return;
         }
 
+        currentTransform = transformRound1;
         waveCompletedUI.GetComponent<TextMeshProUGUI>().text = "";
         waveCompletedPanel.SetActive(false);
         StartCoroutine(WaveSystemRoutine());
@@ -73,6 +81,21 @@ public class ZombieSpawner : MonoBehaviour
         {
             currentWave++;
             UpdateUI();
+
+            Transform[] rounds = { transformRound1, transformRound2, transformRound3 };
+            float minDistance = float.MaxValue;
+
+            foreach (Transform round in rounds)
+            {
+                float distance = Vector3.Distance(playerTransform.position, round.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    currentTransform = round;
+                }
+            }
+            
+            
             PrepareWave();
 
             yield return new WaitUntil(() => zombiesToSpawnRemaining <= 0 && zombiesAlive <= 0);
@@ -163,7 +186,7 @@ void SpawnZombie()
     {
         // Calcul de la position
         Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector3 spawnPos = playerTransform.position + new Vector3(randomDir.x, playerTransform.position.y + 2, randomDir.y) * Random.Range(minDistance, maxDistance);
+        Vector3 spawnPos = currentTransform.position + new Vector3(randomDir.x, currentTransform.position.y + 2, randomDir.y) * Random.Range(minDistance, maxDistance);
         spawnPos.y = 0; 
 
         // Apparition
