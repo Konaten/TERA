@@ -10,7 +10,7 @@ public class Door : MonoBehaviour
     public float openSpeed = 2f;
 
     private bool isOpen = false;
-    bool alreadyOpen = false;
+    public bool alreadyOpen = false;
     private Quaternion closedRotation;
     private Quaternion targetRotation;
 

@@ -74,6 +74,11 @@ public class Joueur : MonoBehaviour
             audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.PlayOneShot(clip);
         }
+
+        if (currentHealth <= 0)
+        {
+            
+        }
     }
     void UpdateUI()
     {
